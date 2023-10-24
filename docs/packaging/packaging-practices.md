@@ -94,10 +94,12 @@ All new packages or updates to packages should abide by the [SPDX 3.x](https://s
 
 :::note
 Build dependencies should be ordered according to the following rules in `package.yml`:
+
 1. `pkgconfig` dependencies before explicitly named dependencies
 2. Each of these two groups in so-called ASCIIbetical order (that is, alphabetical order with all uppercase letters before lowercase letters, and digits/punctuation before letters, [see here](https://en.wikipedia.org/wiki/ASCII#Character_order))
 
 Example:
+
 <!-- prettier-ignore -->
 ```yaml
 builddeps  :
@@ -113,6 +115,7 @@ builddeps  :
     - python-poetry
     - swig
 ```
+
 :::
 
 ### Background
@@ -235,6 +238,19 @@ rundeps:
         - somepackage
         - someotherpackage
 ```
+
+## Check dependencies
+
+_TODO This is a stub for now_
+
+Check dependencies are a special kind of build dependency reserved for automatic package testing by `solbuild`. Check dependencies should only be used during the `check` build phase.
+When a package is part of an automatic build sequence, these dependencies  will **not** be considered when determing build order.
+
+### Example
+
+The package `cbindgen` includes `cython` in `checkdeps` to run tests in the `check` phase.
+
+[cbindgen package.yml file](https://github.com/getsolus/packages/blob/main/packages/c/cbindgen/package.yml)
 
 ## Patching / extra files
 
